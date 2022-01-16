@@ -1,0 +1,53 @@
+.note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 30px;
+  border-right: 2px solid;
+  position: relative;
+  cursor: pointer;
+}
+
+.string {
+  position: absolute;
+  height: 5px;
+  width: 105%;
+  background-color: rgb(215, 215, 215);
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.activeIndicator {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.note:hover::after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgb(193, 193, 193);
+  z-index: 1;
+  position: absolute;
+}
+
+.noteLabel {
+  font-size: 0.9rem;
+  color: black;
+}
+
+.fretNumber {
+  position: absolute;
+  top: -1.5rem;
+  opacity: 0.3;
+  font-size: 0.85rem;
+}
