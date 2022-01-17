@@ -91,6 +91,10 @@ const Note: React.FC<NoteProps> = ({
         return 15;
       case 17:
         return 17;
+      case 19:
+        return 19;
+      case 21:
+        return 21;
     }
   };
 

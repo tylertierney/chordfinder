@@ -1,11 +1,10 @@
 import String from "../String/String";
 import { useState } from "react";
 import { initialFretboardState } from "../../helperFunctions";
+import styles from "./Fretboard.module.css";
 
 const Fretboard: React.FC = () => {
   const [fretboardState, setFretboardState] = useState(initialFretboardState);
-
-  console.log(fretboardState);
 
   const strings = fretboardState.map((string, index) => {
     return (
@@ -19,7 +18,13 @@ const Fretboard: React.FC = () => {
     );
   });
 
-  return <>{strings}</>;
+  return (
+    <div className={styles.controllerContainer}>
+      <div className={styles.fretboardContainer}>{strings}</div>
+      <div className={styles.controllerRightFade}></div>
+      <div className={styles.fretboardRightSpacer}></div>
+    </div>
+  );
 };
 
 export default Fretboard;

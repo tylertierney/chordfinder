@@ -1,7 +1,8 @@
-import { useState } from "react";
 import Note from "../Note/Note";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Button } from "@chakra-ui/react";
 import { NoteType } from "../Note/Note";
+import styles from "./String.module.css";
+import { CloseIcon } from "@chakra-ui/icons";
 
 interface StringProps {
   index: number;
@@ -30,7 +31,23 @@ const String: React.FC<StringProps> = ({
     );
   });
 
-  return <Flex style={{ display: "flex" }}>{arr}</Flex>;
+  return (
+    <Flex align="center">
+      <Button
+        variant="ghost"
+        height="30px"
+        margin="0 8px"
+        padding="0"
+        className={styles.muteBtn}
+        opacity="0.4"
+        _hover={{ opacity: "1", border: "2px solid white" }}
+        _focus={{ outline: "none" }}
+      >
+        <CloseIcon fontSize="0.6rem" />
+      </Button>
+      {arr}
+    </Flex>
+  );
 };
 
 export default String;

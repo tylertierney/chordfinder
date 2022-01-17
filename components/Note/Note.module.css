@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 60px;
+  min-width: 56px;
   height: 30px;
   border-right: 2px solid;
   position: relative;
@@ -30,7 +31,7 @@
   color: black;
 }
 
-.note:hover::after {
+.note::after {
   content: "";
   width: 25px;
   height: 25px;
@@ -38,6 +39,12 @@
   background-color: rgb(193, 193, 193);
   z-index: 1;
   position: absolute;
+  opacity: 0;
+  transition: 0.05s ease-in-out;
+}
+
+.note:hover::after {
+  opacity: 1;
 }
 
 .noteLabel {
