@@ -75,32 +75,49 @@ export const reduceNotesFromFretboard = (fretboardState: StringType[]) => {
 };
 
 export const chordDictionary: any = {
-  C: [
-    ["E", "C", "G", "E", "C", "mute"],
-    ["G", "E", "C", "G", "C", "mute"],
-    ["C", "G", "C", "G", "E", "C"],
-    ["C", "G", "E", "C", "G", "C"],
-  ],
+  C: {
+    maj: [
+      ["E", "C", "G", "E", "C", "mute"],
+      ["G", "E", "C", "G", "C", "mute"],
+      ["E", "E", "C", "G", "C", "mute"],
+      ["C", "G", "C", "G", "E", "C"],
+      ["C", "G", "E", "C", "G", "C"],
+      ["mute", "mute", "C", "G", "C", "mute"],
+    ],
+    min: [
+      ["G", "Eb", "C", "G", "C", "mute"],
+      ["mute", "Eb", "C", "G", "C", "mute"],
+      ["G", "Eb", "C", "G", "mute", "mute"],
+      ["G", "Eb", "C", "mute", "mute", "mute"],
+      ["C", "G", "Eb", "C", "G", "C"],
+      ["Eb", "C", "G", "Eb", "C", "mute"],
+    ],
+    sharp9: [
+      ["E", "Eb", "C", "G", "C", "mute"],
+      ["E", "Eb", "C", "G", "C", "E"],
+    ],
+  },
 };
 
 export const determineChord = (notesArr: string[]) => {
   for (let root in chordDictionary) {
-    const rootChords = chordDictionary[`${root}`];
-    for (let i = 0; i < rootChords.length; i++) {
-      const currentChord = rootChords[i];
-      for (let j = 0; j < currentChord.length; j++) {
-        // if (i === 0) console.log(currentChord[j]);
-        if (currentChord[j] !== notesArr[j]) {
-          break;
-        }
+    for (let rootType in chordDictionary[root]) {
+      const rootChords = chordDictionary[`${root}`][`${rootType}`];
+      for (let i = 0; i < rootChords.length; i++) {
+        const currentChord = rootChords[i];
+        for (let j = 0; j < currentChord.length; j++) {
+          if (currentChord[j] !== notesArr[j]) {
+            break;
+          }
 
-        if (j === currentChord.length - 1 && currentChord[j] === notesArr[j]) {
-          return root;
+          if (
+            j === currentChord.length - 1 &&
+            currentChord[j] === notesArr[j]
+          ) {
+            return root + rootType;
+          }
         }
       }
     }
   }
 };
-
-console.log(determineChord(["D", "E", "C", "G", "C", "mute"]));
-// determineChord(["G", "E", "C", "G", "C", "mute"]);

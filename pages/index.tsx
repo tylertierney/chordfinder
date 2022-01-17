@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Fretboard from "../components/Fretboard/Fretboard";
 import Greeting from "../components/Greeting/Greeting";
+import Result from "../components/Result/Result";
 import { useState } from "react";
 import { initialFretboardState } from "../helperFunctions";
 
@@ -23,6 +24,7 @@ const Home: NextPage = () => {
         fretboardState={fretboardState}
         setFretboardState={setFretboardState}
       />
+      <Result fretboardState={fretboardState} />
     </>
   );
 };

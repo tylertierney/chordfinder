@@ -25,8 +25,6 @@ const String: React.FC<StringProps> = ({
   fretboardState,
   setFretboardState,
 }) => {
-  const [hasNoteSelected, setHasNoteSelected] = useState(false);
-
   const arr = stringState.notes.map((note, idx) => {
     return (
       <Note
@@ -46,26 +44,43 @@ const String: React.FC<StringProps> = ({
     copyOfState[stringIndex].isMuted = !copyOfState[stringIndex].isMuted;
     copyOfState[stringIndex].notes.forEach((note) => (note.value = false));
     setFretboardState(copyOfState);
-    // setStringIsMuted(!stringIsMuted);
   };
+
+  let hasNoteSelected = false;
+
+  for (let i = 0; i < stringState.notes.length; i++) {
+    if (stringState.notes[i].value === true) {
+      hasNoteSelected = true;
+    }
+  }
 
   return (
     <Flex align="center">
-      <Button
-        variant="ghost"
-        height="30px"
-        margin="0 4px"
-        padding="0"
-        className={styles.muteBtn}
-        // opacity={stringState.isMuted ? "1" : "0.08"}
-        opacity="1"
-        _hover={{ opacity: "1", backgroundColor: "rgb(255, 255, 255, 0.05)" }}
-        _focus={{ outline: "none" }}
-        onClick={() => muteString(index)}
-        name="Mute string"
-      >
-        {stringState.isMuted ? <CloseIcon fontSize="0.6rem" /> : <BiCircle />}
-      </Button>
+      <Flex className={styles.muteBtnContainer} margin="0 4px">
+        <Button
+          variant="ghost"
+          height="30px"
+          padding="0"
+          className={styles.muteBtn}
+          opacity={hasNoteSelected ? "0" : "1"}
+          _hover={{ opacity: "1", backgroundColor: "rgb(255, 255, 255, 0.05)" }}
+          _focus={{ outline: "none" }}
+          onClick={() => muteString(index)}
+          name="Mute string"
+          position="relative"
+        >
+          {stringState.isMuted ? <CloseIcon fontSize="0.6rem" /> : <BiCircle />}
+        </Button>
+        <Flex
+          className={styles.muteBtnContainer}
+          height="100%"
+          width="100%"
+          position="absolute"
+          transform="translate(0, -100%)"
+          display={index === 0 ? "initial" : "none"}
+        />
+      </Flex>
+
       {arr}
     </Flex>
   );
