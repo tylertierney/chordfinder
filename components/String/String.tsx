@@ -3,6 +3,7 @@ import { Flex, Button } from "@chakra-ui/react";
 import { NoteType } from "../Note/Note";
 import styles from "./String.module.css";
 import { CloseIcon } from "@chakra-ui/icons";
+import { BiCircle } from "react-icons/bi";
 import { useState } from "react";
 
 export interface StringType {
@@ -24,6 +25,8 @@ const String: React.FC<StringProps> = ({
   fretboardState,
   setFretboardState,
 }) => {
+  const [hasNoteSelected, setHasNoteSelected] = useState(false);
+
   const arr = stringState.notes.map((note, idx) => {
     return (
       <Note
@@ -54,13 +57,14 @@ const String: React.FC<StringProps> = ({
         margin="0 4px"
         padding="0"
         className={styles.muteBtn}
-        opacity={stringState.isMuted ? "1" : "0.08"}
+        // opacity={stringState.isMuted ? "1" : "0.08"}
+        opacity="1"
         _hover={{ opacity: "1", backgroundColor: "rgb(255, 255, 255, 0.05)" }}
         _focus={{ outline: "none" }}
         onClick={() => muteString(index)}
         name="Mute string"
       >
-        <CloseIcon fontSize="0.6rem" />
+        {stringState.isMuted ? <CloseIcon fontSize="0.6rem" /> : <BiCircle />}
       </Button>
       {arr}
     </Flex>

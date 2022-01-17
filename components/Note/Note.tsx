@@ -1,7 +1,11 @@
 import styles from "./Note.module.css";
 import { Flex } from "@chakra-ui/react";
-import { getFretNumber, getNotes } from "../../helperFunctions";
+import {
+  determineFretDecoration,
+  reduceNotesFromFretboard,
+} from "../../helperFunctions";
 import { StringType } from "../String/String";
+import { useState } from "react";
 
 export interface NoteType {
   name: string;
@@ -25,12 +29,14 @@ const Note: React.FC<NoteProps> = ({
   fretboardState,
   setFretboardState,
 }) => {
+  const [isHovering, setIsHovering] = useState(false);
+
   const updateSelectedNotes = (active: boolean) => {
     const copyOfState = [...fretboardState];
+    const string = copyOfState[stringIndex];
 
-    if (copyOfState[stringIndex].isMuted)
-      copyOfState[stringIndex].isMuted = false;
-    copyOfState[stringIndex].notes.forEach((note, idx) => {
+    if (string.isMuted) string.isMuted = false;
+    string.notes.forEach((note, idx) => {
       note.value = false;
       if (idx === noteIndex) {
         note.value = !active;
@@ -38,7 +44,6 @@ const Note: React.FC<NoteProps> = ({
     });
 
     setFretboardState(copyOfState);
-    console.log(getNotes(copyOfState));
   };
 
   const useFlatNoteCharacter = (name: string) => {
@@ -53,22 +58,49 @@ const Note: React.FC<NoteProps> = ({
     return name;
   };
 
+  const isDecorated = determineFretDecoration(noteIndex + 1);
+
   return (
     <Flex
       className={styles.note}
       borderColor="brand.primary.800"
       onClick={() => updateSelectedNotes(active)}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
-      <span className={styles.fretNumber}>
-        {getFretNumber(stringIndex, noteIndex + 1)}
+      <span
+        className={styles.fretNumber}
+        style={{
+          display: stringIndex === 0 ? "initial" : "none",
+          visibility: isDecorated ? "visible" : "hidden",
+        }}
+      >
+        {noteIndex + 1}
       </span>
       <div className={styles.string}></div>
+      <div
+        className={styles.activeIndicator}
+        style={{
+          opacity: "0.75",
+          backgroundColor: "#dddddd",
+          visibility: isHovering ? "visible" : "hidden",
+        }}
+      >
+        {useFlatNoteCharacter(name)}
+      </div>
       <div
         className={styles.activeIndicator}
         style={{ visibility: active ? "visible" : "hidden" }}
       >
         {useFlatNoteCharacter(name)}
       </div>
+      <div
+        className={styles.fretDecorator}
+        style={{
+          display: isDecorated ? "initial" : "none",
+          visibility: stringIndex === 2 ? "visible" : "hidden",
+        }}
+      ></div>
     </Flex>
   );
 };

@@ -29,22 +29,10 @@
   justify-content: center;
   align-items: center;
   color: black;
-}
-
-.note::after {
-  content: "";
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: rgb(193, 193, 193);
-  z-index: 1;
   position: absolute;
-  opacity: 0;
-  transition: 0.05s ease-in-out;
-}
-
-.note:hover::after {
-  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .noteLabel {
@@ -57,4 +45,15 @@
   top: -1.5rem;
   opacity: 0.3;
   font-size: 0.85rem;
+}
+
+.fretDecorator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--secondaryColor);
+  opacity: 0.6;
+  position: absolute;
+  top: 100%;
+  transform: translate(0, -50%);
 }

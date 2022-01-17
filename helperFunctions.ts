@@ -1,199 +1,56 @@
-import { NoteType } from "./components/Note/Note";
 import { StringType } from "./components/String/String";
 
-export const initialFretboardState = [
-  {
-    name: "E",
-    isMuted: false,
-    notes: [
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-    ],
-  },
-  {
-    name: "B",
-    isMuted: false,
-    notes: [
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-    ],
-  },
-  {
-    name: "G",
-    isMuted: false,
-    notes: [
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-    ],
-  },
-  {
-    name: "D",
-    isMuted: false,
-    notes: [
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-    ],
-  },
-  {
-    name: "A",
-    isMuted: false,
-    notes: [
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-    ],
-  },
-  {
-    name: "E",
-    isMuted: false,
-    notes: [
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-      { name: "D", value: false },
-      { name: "Eb", value: false },
-      { name: "E", value: false },
-      { name: "F", value: false },
-      { name: "Gb", value: false },
-      { name: "G", value: false },
-      { name: "Ab", value: false },
-      { name: "A", value: false },
-      { name: "Bb", value: false },
-      { name: "B", value: false },
-      { name: "C", value: false },
-      { name: "Db", value: false },
-    ],
-  },
-];
+const generateString = (startingPosition: string) => {
+  const musicalNotes = [
+    "C",
+    "Db",
+    "D",
+    "Eb",
+    "E",
+    "F",
+    "Gb",
+    "G",
+    "Ab",
+    "A",
+    "Bb",
+    "B",
+  ];
 
-export const getFretNumber = (stringIndex: number, noteIndex: number) => {
-  if (stringIndex !== 0) return null;
+  let startingIndex = musicalNotes.indexOf(startingPosition);
+  let string: StringType = {
+    name: startingPosition,
+    isMuted: false,
+    notes: [],
+  };
 
-  switch (noteIndex) {
-    case 3:
-      return 3;
-    case 5:
-      return 5;
-    case 7:
-      return 7;
-    case 9:
-      return 9;
-    case 12:
-      return 12;
-    case 15:
-      return 15;
-    case 17:
-      return 17;
-    case 19:
-      return 19;
-    case 21:
-      return 21;
-    case 23:
-      return 23;
+  for (let i = startingIndex + 1, j = 0; j < 21; j++, i++) {
+    if (i == musicalNotes.length) i = 0;
+    string.notes.push({ name: musicalNotes[i], value: false });
   }
+
+  return string;
 };
 
-export const getNotes = (fretboardState: StringType[]) => {
+export const initialFretboardState = [
+  generateString("E"),
+  generateString("B"),
+  generateString("G"),
+  generateString("D"),
+  generateString("A"),
+  generateString("E"),
+];
+
+export const determineFretDecoration = (noteIndex: number) => {
+  const decoratedFrets = [3, 5, 7, 9, 12, 15, 17, 19, 21];
+
+  if (decoratedFrets.indexOf(noteIndex) >= 0) {
+    return true;
+  }
+
+  return false;
+};
+
+export const reduceNotesFromFretboard = (fretboardState: StringType[]) => {
   const result = [];
   for (let i = 0; i < fretboardState.length; i++) {
     if (fretboardState[i].isMuted) {
@@ -216,3 +73,34 @@ export const getNotes = (fretboardState: StringType[]) => {
   }
   return result;
 };
+
+export const chordDictionary: any = {
+  C: [
+    ["E", "C", "G", "E", "C", "mute"],
+    ["G", "E", "C", "G", "C", "mute"],
+    ["C", "G", "C", "G", "E", "C"],
+    ["C", "G", "E", "C", "G", "C"],
+  ],
+};
+
+export const determineChord = (notesArr: string[]) => {
+  for (let root in chordDictionary) {
+    const rootChords = chordDictionary[`${root}`];
+    for (let i = 0; i < rootChords.length; i++) {
+      const currentChord = rootChords[i];
+      for (let j = 0; j < currentChord.length; j++) {
+        // if (i === 0) console.log(currentChord[j]);
+        if (currentChord[j] !== notesArr[j]) {
+          break;
+        }
+
+        if (j === currentChord.length - 1 && currentChord[j] === notesArr[j]) {
+          return root;
+        }
+      }
+    }
+  }
+};
+
+console.log(determineChord(["D", "E", "C", "G", "C", "mute"]));
+// determineChord(["G", "E", "C", "G", "C", "mute"]);

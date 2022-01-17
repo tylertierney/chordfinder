@@ -9,3 +9,9 @@ body {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --primaryColor: #7878dd;
+  --primaryColorDark: #565698;
+  --secondaryColor: #78dd78;
+}
