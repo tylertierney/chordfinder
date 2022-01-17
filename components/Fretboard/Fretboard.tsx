@@ -1,11 +1,15 @@
-import String from "../String/String";
-import { useState } from "react";
-import { initialFretboardState } from "../../helperFunctions";
+import String, { StringType } from "../String/String";
 import styles from "./Fretboard.module.css";
 
-const Fretboard: React.FC = () => {
-  const [fretboardState, setFretboardState] = useState(initialFretboardState);
+interface FretboardProps {
+  fretboardState: StringType[];
+  setFretboardState: Function;
+}
 
+const Fretboard: React.FC<FretboardProps> = ({
+  fretboardState,
+  setFretboardState,
+}) => {
   const strings = fretboardState.map((string, index) => {
     return (
       <String

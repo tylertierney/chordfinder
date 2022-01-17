@@ -35,13 +35,6 @@ const themeObj = {
       },
     },
   },
-  components: {
-    Heading: {
-      baseStyle: {
-        color: "gray.700",
-      },
-    },
-  },
   styles: {
     global: (props: any) => ({
       body: {

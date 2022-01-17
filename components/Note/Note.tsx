@@ -1,6 +1,7 @@
 import styles from "./Note.module.css";
 import { Flex } from "@chakra-ui/react";
-import { getFretNumber } from "../../helperFunctions";
+import { getFretNumber, getNotes } from "../../helperFunctions";
+import { StringType } from "../String/String";
 
 export interface NoteType {
   name: string;
@@ -12,10 +13,8 @@ interface NoteProps {
   noteIndex: number;
   active: boolean;
   name: string;
-  fretboardState: NoteType[][];
+  fretboardState: StringType[];
   setFretboardState: Function;
-  stringIsMuted: boolean;
-  setStringIsMuted: Function;
 }
 
 const Note: React.FC<NoteProps> = ({
@@ -25,14 +24,13 @@ const Note: React.FC<NoteProps> = ({
   name,
   fretboardState,
   setFretboardState,
-  stringIsMuted,
-  setStringIsMuted,
 }) => {
   const updateSelectedNotes = (active: boolean) => {
     const copyOfState = [...fretboardState];
 
-    if (stringIsMuted) setStringIsMuted(false);
-    copyOfState[stringIndex].forEach((note, idx) => {
+    if (copyOfState[stringIndex].isMuted)
+      copyOfState[stringIndex].isMuted = false;
+    copyOfState[stringIndex].notes.forEach((note, idx) => {
       note.value = false;
       if (idx === noteIndex) {
         note.value = !active;
@@ -40,6 +38,7 @@ const Note: React.FC<NoteProps> = ({
     });
 
     setFretboardState(copyOfState);
+    console.log(getNotes(copyOfState));
   };
 
   const useFlatNoteCharacter = (name: string) => {

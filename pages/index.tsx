@@ -1,8 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Fretboard from "../components/Fretboard/Fretboard";
+import Greeting from "../components/Greeting/Greeting";
+import { useState } from "react";
+import { initialFretboardState } from "../helperFunctions";
 
 const Home: NextPage = () => {
+  const [fretboardState, setFretboardState] = useState(initialFretboardState);
+
   return (
     <>
       <Head>
@@ -13,8 +18,11 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Fretboard />
+      <Greeting />
+      <Fretboard
+        fretboardState={fretboardState}
+        setFretboardState={setFretboardState}
+      />
     </>
   );
 };
