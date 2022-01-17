@@ -7,6 +7,10 @@
   display: flex;
 }
 
+.controllerContainer::-webkit-scrollbar {
+  display: none;
+}
+
 .controllerRightFade {
   position: fixed;
   height: 100%;

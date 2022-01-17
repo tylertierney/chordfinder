@@ -1,5 +1,6 @@
 import styles from "./Note.module.css";
 import { Flex } from "@chakra-ui/react";
+import { getFretNumber } from "../../helperFunctions";
 
 export interface NoteType {
   name: string;
@@ -13,6 +14,8 @@ interface NoteProps {
   name: string;
   fretboardState: NoteType[][];
   setFretboardState: Function;
+  stringIsMuted: boolean;
+  setStringIsMuted: Function;
 }
 
 const Note: React.FC<NoteProps> = ({
@@ -22,10 +25,13 @@ const Note: React.FC<NoteProps> = ({
   name,
   fretboardState,
   setFretboardState,
+  stringIsMuted,
+  setStringIsMuted,
 }) => {
   const updateSelectedNotes = (active: boolean) => {
     const copyOfState = [...fretboardState];
 
+    if (stringIsMuted) setStringIsMuted(false);
     copyOfState[stringIndex].forEach((note, idx) => {
       note.value = false;
       if (idx === noteIndex) {
@@ -46,56 +52,6 @@ const Note: React.FC<NoteProps> = ({
       );
 
     return name;
-  };
-
-  const fretNumber = () => {
-    let fretNumber = 3;
-    if (stringIndex === 0) {
-      switch (noteIndex) {
-        case 3:
-          return <span>3</span>;
-        case 5:
-          return <span>5</span>;
-        case 7:
-          return <span>7</span>;
-        case 9:
-          return <span>9</span>;
-        case 12:
-          return <span>12</span>;
-        case 15:
-          return <span>15</span>;
-        case 17:
-          return <span>17</span>;
-        default:
-          return null;
-      }
-    }
-    return null;
-  };
-
-  const getFretNumber = (stringIndex: number, noteIndex: number) => {
-    if (stringIndex !== 0) return null;
-
-    switch (noteIndex) {
-      case 3:
-        return 3;
-      case 5:
-        return 5;
-      case 7:
-        return 7;
-      case 9:
-        return 9;
-      case 12:
-        return 12;
-      case 15:
-        return 15;
-      case 17:
-        return 17;
-      case 19:
-        return 19;
-      case 21:
-        return 21;
-    }
   };
 
   return (
