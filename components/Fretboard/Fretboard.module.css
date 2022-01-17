@@ -5,6 +5,7 @@
   overflow-x: scroll;
   position: relative;
   display: flex;
+  height: 280px;
 }
 
 .controllerContainer::-webkit-scrollbar {

@@ -39,7 +39,7 @@ const Result: React.FC<ResultProps> = ({ fretboardState }) => {
     }
     if (result[1] === "s") {
       flatOrSharp = (
-        <Text as="span" color="inherit">
+        <Text as="span" color="inherit" fontSize="60%" verticalAlign="text-top">
           &#9839;
         </Text>
       );
@@ -63,7 +63,7 @@ const Result: React.FC<ResultProps> = ({ fretboardState }) => {
 
     if (result.includes("6")) {
       number = (
-        <Text as="span" color="inherit">
+        <Text as="span" color="inherit" fontSize="60%">
           6
         </Text>
       );
@@ -71,14 +71,14 @@ const Result: React.FC<ResultProps> = ({ fretboardState }) => {
 
     if (result.includes("7")) {
       number = (
-        <Text as="span" color="inherit">
+        <Text as="span" color="inherit" fontSize="60%">
           7
         </Text>
       );
     }
     if (result.includes("9")) {
       number = (
-        <Text as="span" color="inherit">
+        <Text as="span" color="inherit" fontSize="60%" verticalAlign="text-top">
           9
         </Text>
       );

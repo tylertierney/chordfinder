@@ -6,8 +6,10 @@ const Navbar: React.FC = () => {
   return (
     <nav className={styles.navbar}>
       <Flex fontSize="1.5rem" align="center" userSelect="none" padding="0 10px">
-        <Text as="span">Chord</Text>
-        <Text as="span" fontWeight="extrabold">
+        <Text as="span" color="white">
+          Chord
+        </Text>
+        <Text as="span" color="white" fontWeight="extrabold">
           Finder&nbsp;
         </Text>
         <GiGuitarHead />
