@@ -3,7 +3,7 @@ import { Text, Heading, Flex } from "@chakra-ui/react";
 const Greeting = () => {
   return (
     <Flex
-      margin="1rem 0"
+      margin="3rem 0 0rem 0"
       direction="column"
       align="center"
       justifyContent="center"

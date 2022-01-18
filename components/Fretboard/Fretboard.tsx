@@ -2,8 +2,8 @@ import String, { StringType } from "../String/String";
 import styles from "./Fretboard.module.css";
 import { Button } from "@chakra-ui/react";
 import React, { useRef } from "react";
-import { NotAllowedIcon } from "@chakra-ui/icons";
-import { clearFretboard } from "../../helperFunctions";
+import { RepeatIcon } from "@chakra-ui/icons";
+import { resetFretboard } from "../../helperFunctions";
 
 interface FretboardProps {
   fretboardState: StringType[];
@@ -28,22 +28,16 @@ const Fretboard: React.FC<FretboardProps> = ({
     );
   });
 
-  const getFretboardPosition = (fretboardRef: any, topOrHeight: string) => {
+  const getFretboardPosition = (fretboardRef: any) => {
     if (!fretboardRef?.current) {
       return null;
     }
 
-    if (topOrHeight === "top") {
-      return fretboardRef.current.getBoundingClientRect().top;
-    }
-
-    if (topOrHeight === "height") {
-      return fretboardRef.current.getBoundingClientRect().height;
-    }
+    return fretboardRef.current.getBoundingClientRect().top;
   };
 
   const clearFretboardNotes = (fretboardState: StringType[]) => {
-    setFretboardState(clearFretboard(fretboardState));
+    setFretboardState(resetFretboard(fretboardState));
   };
 
   return (
@@ -52,24 +46,18 @@ const Fretboard: React.FC<FretboardProps> = ({
         <Button
           color="white"
           _focus={{ outline: "none" }}
-          className={styles.clearAllBtn}
+          className={styles.resetBtn}
+          height="32px"
           onClick={() => clearFretboardNotes(fretboardState)}
         >
-          Clear&nbsp;
-          <NotAllowedIcon fontSize="1.2rem" />
+          Reset&nbsp;
+          <RepeatIcon fontSize="1.2rem" />
         </Button>
       </div>
       <div ref={fretboardContainerRef} className={styles.fretboardContainer}>
-        {strings}
+        <div className={styles.noteContainer}>{strings}</div>
+        <div className={styles.controllerRightFade}></div>
       </div>
-      <div
-        style={{
-          top: getFretboardPosition(fretboardContainerRef, "top"),
-          height: getFretboardPosition(fretboardContainerRef, "height"),
-        }}
-        className={styles.controllerRightFade}
-      ></div>
-      <div className={styles.fretboardRightSpacer}></div>
     </div>
   );
 };

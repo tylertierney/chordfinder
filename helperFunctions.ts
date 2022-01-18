@@ -51,14 +51,18 @@ export const determineFretDecoration = (noteIndex: number) => {
 };
 
 export const reduceNotesFromFretboard = (fretboardState: StringType[]) => {
-  const result = [];
+  const resultAsNotes = [];
+  const resultAsFretNums = [];
+
   for (let i = 0; i < fretboardState.length; i++) {
     if (fretboardState[i].isMuted) {
-      result.push("mute");
+      resultAsNotes.push("mute");
+      resultAsFretNums.push(-1);
     } else {
       for (let j = 0; j < fretboardState[i].notes.length; j++) {
         if (fretboardState[i].notes[j].value === true) {
-          result.push(fretboardState[i].notes[j].name);
+          resultAsNotes.push(fretboardState[i].notes[j].name);
+          resultAsFretNums.push(j + 1);
           break;
         }
 
@@ -66,64 +70,16 @@ export const reduceNotesFromFretboard = (fretboardState: StringType[]) => {
           j === fretboardState[i].notes.length - 1 &&
           fretboardState[i].notes[j].value === false
         ) {
-          result.push(fretboardState[i].name);
+          resultAsNotes.push(fretboardState[i].name);
+          resultAsFretNums.push(0);
         }
       }
     }
   }
-  return result;
+  return { resultAsNotes, resultAsFretNums };
 };
 
-export const chordDictionary: any = {
-  C: {
-    maj: [
-      ["E", "C", "G", "E", "C", "mute"],
-      ["G", "E", "C", "G", "C", "mute"],
-      ["E", "E", "C", "G", "C", "mute"],
-      ["C", "G", "C", "G", "E", "C"],
-      ["C", "G", "E", "C", "G", "C"],
-      ["mute", "mute", "C", "G", "C", "mute"],
-      ["mute", "E", "C", "G", "C", "mute"],
-    ],
-    min: [
-      ["G", "Eb", "C", "G", "C", "mute"],
-      ["mute", "Eb", "C", "G", "C", "mute"],
-      ["G", "Eb", "C", "G", "mute", "mute"],
-      ["G", "Eb", "C", "mute", "mute", "mute"],
-      ["C", "G", "Eb", "C", "G", "C"],
-      ["Eb", "C", "G", "Eb", "C", "mute"],
-    ],
-    sharp9: [
-      ["E", "Eb", "C", "G", "C", "mute"],
-      ["E", "Eb", "C", "G", "C", "E"],
-    ],
-  },
-};
-
-export const determineChord = (notesArr: string[]) => {
-  for (let root in chordDictionary) {
-    for (let rootType in chordDictionary[root]) {
-      const rootChords = chordDictionary[`${root}`][`${rootType}`];
-      for (let i = 0; i < rootChords.length; i++) {
-        const currentChord = rootChords[i];
-        for (let j = 0; j < currentChord.length; j++) {
-          if (currentChord[j] !== notesArr[j]) {
-            break;
-          }
-
-          if (
-            j === currentChord.length - 1 &&
-            currentChord[j] === notesArr[j]
-          ) {
-            return root + rootType;
-          }
-        }
-      }
-    }
-  }
-};
-
-export const clearFretboard = (fretboardState: StringType[]) => {
+export const resetFretboard = (fretboardState: StringType[]) => {
   let copyOfState = [...fretboardState];
 
   for (let i = 0; i < copyOfState.length; i++) {
@@ -135,4 +91,35 @@ export const clearFretboard = (fretboardState: StringType[]) => {
   }
 
   return copyOfState;
+};
+
+export const determineChord = (chordDictionary: any, userInput: number[]) => {
+  let reversedUserInput: any = [];
+  for (let i = userInput.length - 1; i > -1; i--) {
+    reversedUserInput.push(userInput[i]);
+  }
+
+  reversedUserInput = JSON.stringify(reversedUserInput);
+
+  chordDictionary = chordDictionary.chords;
+
+  for (let key in chordDictionary) {
+    for (let i = 0; i < chordDictionary[key].length; i++) {
+      const chord = chordDictionary[key][i];
+
+      for (let j = 0; j < chord.positions.length; j++) {
+        const position = chord.positions[j];
+        const increasedFretValues = position.frets.map((fretNum: number) => {
+          return fretNum === -1 ? -1 : fretNum + position.baseFret - 1;
+        });
+
+        if (JSON.stringify(increasedFretValues) === reversedUserInput) {
+          const name = chord.key;
+          const suffix = chord.suffix.replace("or", "");
+          const result = { name, suffix };
+          return result;
+        }
+      }
+    }
+  }
 };

@@ -6,6 +6,7 @@ import {
 } from "../../helperFunctions";
 import styles from "./Result.module.css";
 import { Text } from "@chakra-ui/react";
+import chordDictionary from "../../chords.json";
 
 interface ResultProps {
   fretboardState: StringType[];
@@ -14,89 +15,22 @@ interface ResultProps {
 const Result: React.FC<ResultProps> = ({ fretboardState }) => {
   const reduced = reduceNotesFromFretboard(fretboardState);
 
-  let result = determineChord(reduced);
+  let result = determineChord(chordDictionary, reduced.resultAsFretNums);
+  let chordName = result?.name;
+  let suffix = result?.suffix;
 
-  const replaceSpecialCharacters = (result: string | undefined) => {
-    if (!result) return null;
-
-    console.log(result);
-
-    let root = (
-      <Text as="span" color="inherit">
-        {result[0]}
-      </Text>
-    );
-    let flatOrSharp;
-    let majorOrMinor;
-    let number;
-
-    if (result[1] === "b") {
-      flatOrSharp = (
-        <Text as="span" color="inherit">
-          &#9837;
-        </Text>
-      );
-    }
-    if (result[1] === "s") {
-      flatOrSharp = (
-        <Text as="span" color="inherit" fontSize="60%" verticalAlign="text-top">
-          &#9839;
-        </Text>
-      );
-    }
-
-    if (result.includes("maj")) {
-      majorOrMinor = (
-        <Text as="span" fontSize="75%" color="inherit">
-          maj
-        </Text>
-      );
-    }
-
-    if (result.includes("min")) {
-      majorOrMinor = (
-        <Text as="span" fontSize="75%" color="inherit">
-          min
-        </Text>
-      );
-    }
-
-    if (result.includes("6")) {
-      number = (
-        <Text as="span" color="inherit" fontSize="60%">
-          6
-        </Text>
-      );
-    }
-
-    if (result.includes("7")) {
-      number = (
-        <Text as="span" color="inherit" fontSize="60%">
-          7
-        </Text>
-      );
-    }
-    if (result.includes("9")) {
-      number = (
-        <Text as="span" color="inherit" fontSize="60%" verticalAlign="text-top">
-          9
-        </Text>
-      );
-    }
-
-    return (
-      <>
-        {root}
-        {flatOrSharp}
-        {majorOrMinor}
-        {number}
-      </>
-    );
-  };
+  if (suffix === "maj") {
+    suffix = null;
+  }
 
   return (
     <Heading className={styles.resultHeading} fontSize="3rem">
-      {replaceSpecialCharacters(result)}
+      <Text color="inherit" as="span">
+        {chordName}
+      </Text>
+      <Text color="inherit" as="span" fontSize="65%" verticalAlign="text-top">
+        {suffix}
+      </Text>
     </Heading>
   );
 };
