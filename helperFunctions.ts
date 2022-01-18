@@ -83,6 +83,7 @@ export const chordDictionary: any = {
       ["C", "G", "C", "G", "E", "C"],
       ["C", "G", "E", "C", "G", "C"],
       ["mute", "mute", "C", "G", "C", "mute"],
+      ["mute", "E", "C", "G", "C", "mute"],
     ],
     min: [
       ["G", "Eb", "C", "G", "C", "mute"],
@@ -120,4 +121,18 @@ export const determineChord = (notesArr: string[]) => {
       }
     }
   }
+};
+
+export const clearFretboard = (fretboardState: StringType[]) => {
+  let copyOfState = [...fretboardState];
+
+  for (let i = 0; i < copyOfState.length; i++) {
+    copyOfState[i].isMuted = false;
+    for (let j = 0; j < copyOfState[i].notes.length; j++) {
+      const note = copyOfState[i].notes[j];
+      note.value = false;
+    }
+  }
+
+  return copyOfState;
 };

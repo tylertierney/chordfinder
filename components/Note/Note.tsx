@@ -65,8 +65,8 @@ const Note: React.FC<NoteProps> = ({
       className={styles.note}
       borderColor="brand.primary.800"
       onClick={() => updateSelectedNotes(active)}
-      onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      onMouseOver={() => setIsHovering(true)}
     >
       <span
         className={styles.fretNumber}

@@ -10,7 +10,7 @@ const Greeting = () => {
     >
       <Text
         lineHeight="1.1"
-        fontSize="1.6rem"
+        fontSize={["1.35rem", "1.4rem", "1.6rem"]}
         fontWeight="light"
         textAlign="center"
         maxW="75%"
