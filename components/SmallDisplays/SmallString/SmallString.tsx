@@ -42,16 +42,14 @@ const SmallString: React.FC<SmallStringProps> = ({
   }
 
   return (
-    <>
-      <Flex justify="center" align="center">
-        {hasOpenOrMute ? (
-          <Flex minW="14px" maxW="14px">
-            {openOrMuteIcon}
-          </Flex>
-        ) : null}
-        {notes}
-      </Flex>
-    </>
+    <Flex justify="center" align="center" userSelect="none">
+      {hasOpenOrMute ? (
+        <Flex minW="14px" maxW="14px">
+          {openOrMuteIcon}
+        </Flex>
+      ) : null}
+      {notes}
+    </Flex>
   );
 };
 

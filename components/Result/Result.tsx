@@ -25,7 +25,7 @@ const Result: React.FC<ResultProps> = ({ currentChord }) => {
   }
 
   return (
-    <Heading className={styles.resultHeading} fontSize="3rem">
+    <Heading className={styles.resultHeading} fontSize="3rem" userSelect="none">
       <Text color="inherit" as="span">
         {chordName}
       </Text>

@@ -1,13 +1,14 @@
 .controllerContainer {
   width: 100%;
   max-width: 100%;
-  padding: 16px 0px 16px 0px;
+  padding: 20px 0px 8px 0px;
   overflow-x: scroll;
   position: relative;
   display: flex;
-  height: 340px;
+  height: 300px;
   flex-direction: column;
   overflow-y: hidden;
+  user-select: none;
 }
 
 .controllerContainer::-webkit-scrollbar {
@@ -51,7 +52,7 @@
   top: 0;
   left: 0;
   background-color: var(--backgroundColor);
-  padding: 0 20px 40px 20px;
+  padding: 0 20px 26px 20px;
 }
 
 .resetBtn {

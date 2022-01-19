@@ -53,7 +53,12 @@ const SmallFretboard: React.FC<SmallFretboardProps> = ({
       align="center"
       className={styles.smallFretboardContainer}
     >
-      <Heading fontSize="1.2rem" mb="14px" color="var(--secondaryColor)">
+      <Heading
+        fontSize="1.2rem"
+        mb="14px"
+        color="var(--secondaryColor)"
+        userSelect="none"
+      >
         <Text color="inherit" as="span">
           {chordKey}
         </Text>

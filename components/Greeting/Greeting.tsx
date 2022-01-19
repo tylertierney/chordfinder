@@ -3,10 +3,11 @@ import { Text, Heading, Flex } from "@chakra-ui/react";
 const Greeting = () => {
   return (
     <Flex
-      margin="3rem 0 0rem 0"
+      margin="2rem 0 0rem 0"
       direction="column"
       align="center"
       justifyContent="center"
+      userSelect="none"
     >
       <Text
         lineHeight="1.1"
