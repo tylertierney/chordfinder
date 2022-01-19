@@ -20,11 +20,11 @@ const Greeting = () => {
         <Text as="span" fontWeight="bold" color="brand.secondary.1000">
           &nbsp;notes&nbsp;
         </Text>
-        and we'll show you what
+        and we&apos;ll show you what
         <Text as="span" fontWeight="bold" color="brand.secondary.1000">
           &nbsp;chord&nbsp;
         </Text>
-        you're playing
+        you&apos;re playing
       </Text>
     </Flex>
   );

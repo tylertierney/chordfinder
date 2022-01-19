@@ -29,7 +29,9 @@ const SmallFretboard: React.FC<SmallFretboardProps> = ({
   const frets = [...position.frets].reverse();
 
   const strings = frets.map((note: number, index: number) => {
-    const numberOfFretsToSpan: number = Math.max(...frets);
+    let numberOfFretsToSpan: number = Math.max(...frets);
+    numberOfFretsToSpan = Math.max(3, numberOfFretsToSpan);
+
     return (
       <SmallString
         key={index}

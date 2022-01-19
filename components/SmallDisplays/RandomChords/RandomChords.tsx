@@ -5,7 +5,7 @@ import chordDictionary from "../../../chords.json";
 import { BiShuffle } from "react-icons/bi";
 import { getRandomChords } from "../../../helperFunctions";
 import SmallFretboard from "../SmallFretboard/SmallFretboard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface RandomChordsProps {
   fretboardState: StringType[];
@@ -16,11 +16,13 @@ const RandomChords: React.FC<RandomChordsProps> = ({
   fretboardState,
   setFretboardState,
 }) => {
-  const [randomChords, setRandomChords] = useState(
-    getRandomChords(chordDictionary)
-  );
+  const [randomChords, setRandomChords] = useState<any>([]);
 
-  const randomChordsArr = randomChords.map((chord, index) => {
+  useEffect(() => {
+    setRandomChords(getRandomChords(chordDictionary));
+  }, []);
+
+  const randomChordsArr = randomChords.map((chord: any, index: number) => {
     return (
       <SmallFretboard
         key={index}

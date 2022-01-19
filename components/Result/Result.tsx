@@ -77,7 +77,7 @@ const Result: React.FC<ResultProps> = ({
       >
         <Heading
           className={styles.resultHeading}
-          fontSize="2.4rem"
+          fontSize="2.6rem"
           userSelect="none"
         >
           <Text color="inherit" as="span">
