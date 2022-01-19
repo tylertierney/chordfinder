@@ -3,30 +3,13 @@ import SmallFretboard from "./SmallFretboard/SmallFretboard";
 import chordDictionary from "../../chords.json";
 
 interface SmallDisplaysProps {
-  chordsToDisplay: any;
   currentChord: any;
 }
 
-const SmallDisplays: React.FC<SmallDisplaysProps> = ({
-  chordsToDisplay,
-  currentChord,
-}) => {
-  if (!chordsToDisplay || !currentChord) {
+const SmallDisplays: React.FC<SmallDisplaysProps> = ({ currentChord }) => {
+  if (!currentChord) {
     return null;
   }
-
-  chordsToDisplay = chordsToDisplay.positions.map(
-    (position: any, index: number) => {
-      return (
-        <SmallFretboard
-          key={index}
-          position={position}
-          chordKey={chordsToDisplay.key}
-          suffix={chordsToDisplay.suffix}
-        />
-      );
-    }
-  );
 
   let currentChordPositions: any = null;
 
