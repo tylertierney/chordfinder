@@ -1,25 +1,32 @@
 import { Flex } from "@chakra-ui/react";
 import SmallFretboard from "./SmallFretboard/SmallFretboard";
 import chordDictionary from "../../chords.json";
+import { StringType } from "../String/String";
 
 interface SmallDisplaysProps {
   currentChord: any;
+  fretboardState: StringType[];
+  setFretboardState: Function;
 }
 
-const SmallDisplays: React.FC<SmallDisplaysProps> = ({ currentChord }) => {
+const SmallDisplays: React.FC<SmallDisplaysProps> = ({
+  currentChord,
+  fretboardState,
+  setFretboardState,
+}) => {
   if (!currentChord) {
     return null;
   }
 
   let currentChordPositions: any = null;
 
-  const chordDictionary2: any = chordDictionary.chords;
-  for (let chordKey in chordDictionary2) {
+  const chords: any = chordDictionary.chords;
+  for (let chordKey in chords) {
     if (chordKey == undefined || chordKey == null) {
       return null;
     }
-    for (let i = 0; i < chordDictionary2[chordKey].length; i++) {
-      const current = chordDictionary2[chordKey][i];
+    for (let i = 0; i < chords[chordKey].length; i++) {
+      const current = chords[chordKey][i];
       if (
         current.key === currentChord.name &&
         current.suffix === currentChord.suffix
@@ -32,6 +39,8 @@ const SmallDisplays: React.FC<SmallDisplaysProps> = ({ currentChord }) => {
                 position={position}
                 chordKey={current.key}
                 suffix={current.suffix}
+                fretboardState={fretboardState}
+                setFretboardState={setFretboardState}
               />
             );
           }

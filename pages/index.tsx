@@ -35,7 +35,11 @@ const Home: NextPage = () => {
         setFretboardState={setFretboardState}
       />
       <Result currentChord={userSelectedChord} />
-      <SmallDisplays currentChord={userSelectedChord} />
+      <SmallDisplays
+        currentChord={userSelectedChord}
+        fretboardState={fretboardState}
+        setFretboardState={setFretboardState}
+      />
     </>
   );
 };

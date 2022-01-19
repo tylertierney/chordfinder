@@ -1,17 +1,22 @@
 import styles from "./SmallFretboard.module.css";
 import { Flex, Heading, Text } from "@chakra-ui/react";
 import SmallString from "../SmallString/SmallString";
+import { StringType } from "../../String/String";
 
 interface SmallFretboardProps {
   position: any;
   chordKey: string;
   suffix: string;
+  fretboardState: StringType[];
+  setFretboardState: Function;
 }
 
 const SmallFretboard: React.FC<SmallFretboardProps> = ({
   position,
   chordKey,
   suffix,
+  fretboardState,
+  setFretboardState,
 }) => {
   let hasOpenOrMute = false;
 
@@ -46,12 +51,57 @@ const SmallFretboard: React.FC<SmallFretboardProps> = ({
     chordSuffix = "min";
   }
 
+  const updateMainFretboard = (fretboardState: StringType[]) => {
+    const setStringToOpen = (string: StringType) => {
+      string.isMuted = false;
+      string.notes.forEach((note) => {
+        note.value = false;
+      });
+      return string;
+    };
+
+    const setStringToMuted = (string: StringType) => {
+      string.isMuted = true;
+      string.notes.forEach((note) => {
+        note.value = false;
+      });
+      return string;
+    };
+
+    const copyOfState = [...fretboardState];
+    const frets = [...position.frets].reverse();
+
+    for (let k = 0; k < frets.length; k++) {
+      let fretDecrementor = -2;
+      if (frets[k] === 4) fretDecrementor = -2;
+      const noteToPlace = frets[k] + position.baseFret + fretDecrementor;
+      let string = copyOfState[k];
+      if (frets[k] === -1) {
+        string = setStringToMuted(string);
+      } else if (frets[k] === 0) {
+        string = setStringToOpen(string);
+      } else {
+        string.isMuted = false;
+        string.notes.forEach((note, index) => {
+          note.value = false;
+          if (index === noteToPlace) {
+            note.value = true;
+          }
+        });
+      }
+    }
+    // console.log(position);
+    setFretboardState(copyOfState);
+  };
+
   return (
     <Flex
       direction="column"
       justify="center"
       align="center"
       className={styles.smallFretboardContainer}
+      onClick={() => updateMainFretboard(fretboardState)}
+      // onClick={() => console.log([...position.frets].reverse())}
     >
       <Heading
         fontSize="1.2rem"
