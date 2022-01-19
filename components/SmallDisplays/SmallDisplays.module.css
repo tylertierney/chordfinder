@@ -25,6 +25,18 @@
   margin-bottom: 16px;
 }
 
-.heading {
+.headingContainer {
+  width: 100%;
   align-self: flex-start;
+  padding: 4px 10px;
+}
+
+/* .heading {
+  align-self: flex-start;
+} */
+
+@media only screen and (max-width: 440px) {
+  .smallDisplaysContainer {
+    padding: 20px 8px;
+  }
 }

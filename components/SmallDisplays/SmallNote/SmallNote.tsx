@@ -16,9 +16,6 @@ const SmallNote: React.FC<SmallNoteProps> = ({
   baseFret,
 }) => {
   let isDecorated = determineFretDecoration(noteIndex);
-  if (fretNum === -1) {
-    isDecorated = false;
-  }
 
   let active = false;
   if (noteIndex === fretNum + baseFret - 1) {

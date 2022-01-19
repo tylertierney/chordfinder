@@ -1,15 +1,27 @@
 .smallFretboardContainer {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 10px 20px 10px 20px;
   padding: 8px 20px 20px 20px;
   box-shadow: 2px 2px 10px 1px rgb(0, 0, 0, 0.5);
   border-radius: 10px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  outline: 2px solid transparent;
+  border: 2px solid transparent;
   width: 200px;
+  background-color: var(--primaryColorDark);
 }
 
 .smallFretboardContainer:hover {
-  outline: 2px solid var(--secondaryColor);
+  border: 2px solid var(--secondaryColor);
   transform: scale(1.02);
+}
+
+@media only screen and (max-width: 440px) {
+  .smallFretboardContainer {
+    margin: 10px 5px;
+    padding: 8px 8px 10px 8px;
+    width: 150px;
+  }
 }

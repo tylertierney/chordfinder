@@ -152,22 +152,6 @@ export const calculateRelatedChords = (
       for (let i = 0; i < 4; i++) {
         const currentChordIteration = chordDictionary[key][i];
         const suffix = currentChordIteration.suffix;
-        // if (
-        //   suffix !== currentChord.suffix &&
-        //   suffix.includes(suffixToSearchFor)
-        // ) {
-        //   return currentChordIteration;
-
-        // }
-        // if (suffix !== currentChord.suffix) {
-        //   if (suffix.includes(suffixToSearchFor)) {
-        //     return currentChordIteration;
-        //   } else {
-        //     if (suffix.includes(suffixToSearchFor[0])) {
-        //       return currentChordIteration;
-        //     }
-        //   }
-        // }
         if (suffix !== currentChord.suffix) {
           result.push(currentChordIteration);
         }

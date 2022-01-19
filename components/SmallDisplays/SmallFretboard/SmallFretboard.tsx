@@ -90,18 +90,13 @@ const SmallFretboard: React.FC<SmallFretboardProps> = ({
         });
       }
     }
-    // console.log(position);
     setFretboardState(copyOfState);
   };
 
   return (
     <Flex
-      direction="column"
-      justify="center"
-      align="center"
       className={styles.smallFretboardContainer}
       onClick={() => updateMainFretboard(fretboardState)}
-      // onClick={() => console.log([...position.frets].reverse())}
     >
       <Heading
         fontSize="1.2rem"

@@ -4,7 +4,8 @@ import chordDictionary from "../../chords.json";
 import { StringType } from "../String/String";
 import styles from "./SmallDisplays.module.css";
 import Result from "../Result/Result";
-import { calculateRelatedChords } from "../../helperFunctions";
+// import { calculateRelatedChords } from "../../helperFunctions";
+import RelatedChords from "./RelatedChords/RelatedChords";
 
 interface SmallDisplaysProps {
   type: string;
@@ -56,12 +57,10 @@ const SmallDisplays: React.FC<SmallDisplaysProps> = ({
     }
   }
 
-  console.log(calculateRelatedChords(chordDictionary, currentChord));
+  // const relatedChords = calculateRelatedChords(chordDictionary, currentChord);
 
-  const relatedChords = calculateRelatedChords(chordDictionary, currentChord);
-
-  // const relatedChords = relatedChord?.positions?.map(
-  //   (position: any, index: number) => {
+  // const relatedChordsPositions = relatedChords?.map((relatedChord) => {
+  //   return relatedChord?.positions?.map((position: any, index: number) => {
   //     return (
   //       <SmallFretboard
   //         key={index}
@@ -72,44 +71,27 @@ const SmallDisplays: React.FC<SmallDisplaysProps> = ({
   //         setFretboardState={setFretboardState}
   //       />
   //     );
-  //   }
-  // );
-
-  const relatedChordsPositions = relatedChords?.map((relatedChord) => {
-    // if (relatedChord == null || relatedChord == undefined) return null;
-    return relatedChord?.positions?.map((position: any, index: number) => {
-      return (
-        <SmallFretboard
-          key={index}
-          position={position}
-          chordKey={relatedChord.key}
-          suffix={relatedChord.suffix}
-          fretboardState={fretboardState}
-          setFretboardState={setFretboardState}
-        />
-      );
-    });
-  });
+  //   });
+  // });
 
   return (
     <Flex direction="column" className={styles.smallDisplaysContainer}>
       <div style={{ display: type === "result" ? "initial" : "none" }}>
         <Result currentChord={currentChord} />
       </div>
-      <Heading className={styles.heading}>{heading}</Heading>
-      <div className={styles.divider}></div>
-
-      <Flex align="center" width="100%" justify="center" wrap="wrap">
+      <div className={styles.headingContainer}>
+        <Heading className={styles.heading}>{heading}</Heading>
+        <div className={styles.divider}></div>
+      </div>
+      <Flex align="center" width="100%" justify="center" wrap="wrap" mb="20px">
         {currentChordPositions}
       </Flex>
-      <div style={{ display: type === "result" ? "initial" : "none" }}>
-        <Heading className={styles.heading}>Related</Heading>
-        <div className={styles.divider}></div>
-
-        <Flex align="center" width="100%" justify="center" wrap="wrap">
-          {relatedChordsPositions}
-        </Flex>
-      </div>
+      <RelatedChords
+        display={type === "result" ? true : false}
+        currentChord={currentChord}
+        fretboardState={fretboardState}
+        setFretboardState={setFretboardState}
+      />
     </Flex>
   );
 };

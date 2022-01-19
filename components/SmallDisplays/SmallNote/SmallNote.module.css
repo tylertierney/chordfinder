@@ -52,3 +52,10 @@
   top: 100%;
   transform: translate(0, -50%);
 }
+
+@media only screen and (max-width: 440px) {
+  .note {
+    width: 30px;
+    min-width: 30px;
+  }
+}
