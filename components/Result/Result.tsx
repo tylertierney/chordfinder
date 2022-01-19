@@ -16,7 +16,7 @@ const Result: React.FC<ResultProps> = ({ fretboardState }) => {
   const reduced = reduceNotesFromFretboard(fretboardState);
 
   let result = determineChord(chordDictionary, reduced.resultAsFretNums);
-  let chordName = result?.name;
+  const chordName = result?.name;
   let suffix = result?.suffix;
 
   if (suffix === "maj") {

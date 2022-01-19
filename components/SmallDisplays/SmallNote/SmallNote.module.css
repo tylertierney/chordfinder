@@ -1,0 +1,43 @@
+.note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  min-width: 26px;
+  height: 14px;
+  border-right: 2px solid;
+  position: relative;
+}
+
+.string {
+  position: absolute;
+  height: 1.5px;
+  width: 105%;
+  background-color: rgb(215, 215, 215);
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.fretNumber {
+  position: absolute;
+  top: -1rem;
+  opacity: 0.3;
+  font-size: 0.7rem;
+}
+
+.activeIndicator {
+  width: 10px;
+  height: 10px;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,4 +1,5 @@
 .resultHeading {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   color: var(--secondaryColor);
+  min-height: 76px;
 }

@@ -5,6 +5,8 @@ import Greeting from "../components/Greeting/Greeting";
 import Result from "../components/Result/Result";
 import { useState } from "react";
 import { initialFretboardState } from "../helperFunctions";
+import SmallDisplays from "../components/SmallDisplays/SmallDisplays";
+import mockData from "../mockData.json";
 
 const Home: NextPage = () => {
   const [fretboardState, setFretboardState] = useState(initialFretboardState);
@@ -25,6 +27,7 @@ const Home: NextPage = () => {
         setFretboardState={setFretboardState}
       />
       <Result fretboardState={fretboardState} />
+      <SmallDisplays chordsToDisplay={mockData} />
     </>
   );
 };
