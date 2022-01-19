@@ -17,3 +17,18 @@ body {
   --backgroundColor2: #333240;
   --backgroundColor: #27272c;
 }
+
+.resetBtn {
+  transition: 0.2s ease-in-out;
+  opacity: 0.75;
+  background-color: var(--primaryColor);
+}
+.resetBtn:active {
+  transform: translate(1px, 2px);
+  opacity: 1;
+}
+
+.resetBtn:hover {
+  opacity: 1;
+  background-color: var(--primaryColor);
+}

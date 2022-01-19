@@ -1,14 +1,8 @@
-.resultContainer {
-  margin: 20px 0 10px 0;
-
-  border: 2px solid var(--secondaryColor);
-  border-radius: 50%;
-  height: 120px;
-  width: 120px;
-  min-height: 110px;
-}
-
-.resultHeading {
+.titleContainer {
+  margin: 0;
+  height: 60px;
+  width: 100%;
+  min-height: 60px;
   color: var(--secondaryColor);
 }
 

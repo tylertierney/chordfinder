@@ -44,10 +44,12 @@ const Fretboard: React.FC<FretboardProps> = ({
     <div className={styles.controllerContainer}>
       <div className={styles.controllerToolbar}>
         <Button
-          color="white"
+          bgColor="var(--primaryColor)"
+          variant="unstyled"
           _focus={{ outline: "none" }}
-          className={styles.resetBtn}
+          className="resetBtn"
           height="32px"
+          minW="90px"
           onClick={() => clearFretboardNotes(fretboardState)}
         >
           Reset&nbsp;

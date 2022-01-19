@@ -161,3 +161,29 @@ export const calculateRelatedChords = (
   }
   return null;
 };
+
+export const getRandomChords = (chordDictionary: any) => {
+  const randomFromDictionary = () => {
+    let result = { key: "C", suffix: "major", position: [-1, 3, 2, 0, 1, 0] };
+    const keys = Object.keys(chordDictionary.chords);
+    const randomKey =
+      chordDictionary.chords[keys[(keys.length * Math.random()) << 0]];
+
+    const randomChord = randomKey[(randomKey.length * Math.random()) << 0];
+    result.key = randomChord.key;
+    result.suffix = randomChord.suffix;
+    const randomPosition =
+      randomChord.positions[
+        (randomChord.positions.length * Math.random()) << 0
+      ];
+    result.position = randomPosition;
+    return result;
+  };
+
+  const result = [];
+  for (let i = 0; i < 4; i++) {
+    result.push(randomFromDictionary());
+  }
+
+  return result;
+};

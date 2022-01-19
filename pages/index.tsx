@@ -35,9 +35,18 @@ const Home: NextPage = () => {
         setFretboardState={setFretboardState}
       />
 
+      {userSelectedChord && (
+        <SmallDisplays
+          type="result"
+          heading="Positions"
+          currentChord={userSelectedChord}
+          fretboardState={fretboardState}
+          setFretboardState={setFretboardState}
+        />
+      )}
       <SmallDisplays
-        type="result"
-        heading="Positions"
+        type="random"
+        heading="Random"
         currentChord={userSelectedChord}
         fretboardState={fretboardState}
         setFretboardState={setFretboardState}

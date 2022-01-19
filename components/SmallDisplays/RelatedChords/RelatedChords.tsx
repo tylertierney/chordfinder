@@ -21,6 +21,9 @@ const RelatedChords: React.FC<RelatedChordsProps> = ({
   setFretboardState,
 }) => {
   if (!display) return null;
+  if (!currentChord) {
+    return null;
+  }
 
   const relatedChords = calculateRelatedChords(chordDictionary, currentChord);
 
@@ -41,10 +44,6 @@ const RelatedChords: React.FC<RelatedChordsProps> = ({
 
   return (
     <>
-      <div className={styles.headingContainer}>
-        <Heading className={styles.heading}>Related</Heading>
-        <div className={styles.divider}></div>
-      </div>
       <Flex align="center" width="100%" justify="center" wrap="wrap" mb="20px">
         {relatedChordsPositions}
       </Flex>
