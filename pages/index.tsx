@@ -7,9 +7,18 @@ import { useState } from "react";
 import { initialFretboardState } from "../helperFunctions";
 import SmallDisplays from "../components/SmallDisplays/SmallDisplays";
 import mockData from "../mockData.json";
+import { reduceNotesFromFretboard, determineChord } from "../helperFunctions";
+import chordDictionary from "../chords.json";
 
 const Home: NextPage = () => {
   const [fretboardState, setFretboardState] = useState(initialFretboardState);
+
+  const reducedNotesFromFretboard = reduceNotesFromFretboard(fretboardState);
+
+  let userSelectedChord: any = determineChord(
+    chordDictionary,
+    reducedNotesFromFretboard.resultAsFretNums
+  );
 
   return (
     <>
@@ -26,8 +35,11 @@ const Home: NextPage = () => {
         fretboardState={fretboardState}
         setFretboardState={setFretboardState}
       />
-      <Result fretboardState={fretboardState} />
-      <SmallDisplays chordsToDisplay={mockData} />
+      <Result currentChord={userSelectedChord} />
+      <SmallDisplays
+        chordsToDisplay={mockData}
+        currentChord={userSelectedChord}
+      />
     </>
   );
 };

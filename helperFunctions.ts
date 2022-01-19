@@ -115,7 +115,7 @@ export const determineChord = (chordDictionary: any, userInput: number[]) => {
 
         if (JSON.stringify(increasedFretValues) === reversedUserInput) {
           const name = chord.key;
-          const suffix = chord.suffix.replace("or", "");
+          const suffix = chord.suffix;
           const result = { name, suffix };
           return result;
         }

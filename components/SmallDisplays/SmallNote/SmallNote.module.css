@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 26px;
-  min-width: 26px;
-  height: 14px;
+  width: 40px;
+  min-width: 40px;
+  height: 16px;
   border-right: 2px solid;
   position: relative;
 }
@@ -26,8 +26,8 @@
 }
 
 .activeIndicator {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   font-size: 0.8rem;
   border-radius: 50%;
   background-color: white;
@@ -40,4 +40,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.fretDecorator {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--secondaryColor);
+  opacity: 0.6;
+  position: absolute;
+  top: 100%;
+  transform: translate(0, -50%);
 }

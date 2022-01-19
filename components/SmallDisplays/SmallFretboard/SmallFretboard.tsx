@@ -13,11 +13,18 @@ const SmallFretboard: React.FC<SmallFretboardProps> = ({
   chordKey,
   suffix,
 }) => {
+  let hasOpenOrMute = false;
+
+  for (let j = 0; j < position.frets.length; j++) {
+    if (position.frets[j] === -1 || position.frets[j] === 0) {
+      hasOpenOrMute = true;
+    }
+  }
+
   const frets = [...position.frets].reverse();
 
   const strings = frets.map((note: number, index: number) => {
     const numberOfFretsToSpan: number = Math.max(...frets);
-
     return (
       <SmallString
         key={index}
@@ -25,6 +32,7 @@ const SmallFretboard: React.FC<SmallFretboardProps> = ({
         numberOfFretsToSpan={numberOfFretsToSpan}
         baseFret={position.baseFret}
         fretNum={note}
+        hasOpenOrMute={hasOpenOrMute}
       />
     );
   });
@@ -32,6 +40,10 @@ const SmallFretboard: React.FC<SmallFretboardProps> = ({
   let chordSuffix: string | null = suffix;
   if (suffix === "major") {
     chordSuffix = null;
+  }
+
+  if (suffix === "minor") {
+    chordSuffix = "min";
   }
 
   return (

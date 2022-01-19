@@ -9,18 +9,19 @@ import { Text } from "@chakra-ui/react";
 import chordDictionary from "../../chords.json";
 
 interface ResultProps {
-  fretboardState: StringType[];
+  currentChord: any;
 }
 
-const Result: React.FC<ResultProps> = ({ fretboardState }) => {
-  const reduced = reduceNotesFromFretboard(fretboardState);
+const Result: React.FC<ResultProps> = ({ currentChord }) => {
+  const chordName = currentChord?.name;
+  let suffix = currentChord?.suffix;
 
-  let result = determineChord(chordDictionary, reduced.resultAsFretNums);
-  const chordName = result?.name;
-  let suffix = result?.suffix;
-
-  if (suffix === "maj") {
+  if (suffix === "major") {
     suffix = null;
+  }
+
+  if (suffix === "minor") {
+    suffix = "min";
   }
 
   return (

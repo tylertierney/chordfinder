@@ -1,12 +1,17 @@
 import { Flex } from "@chakra-ui/react";
 import SmallFretboard from "./SmallFretboard/SmallFretboard";
+import chordDictionary from "../../chords.json";
 
 interface SmallDisplaysProps {
   chordsToDisplay: any;
+  currentChord: any;
 }
 
-const SmallDisplays: React.FC<SmallDisplaysProps> = ({ chordsToDisplay }) => {
-  if (!chordsToDisplay) {
+const SmallDisplays: React.FC<SmallDisplaysProps> = ({
+  chordsToDisplay,
+  currentChord,
+}) => {
+  if (!chordsToDisplay || !currentChord) {
     return null;
   }
 
@@ -23,6 +28,35 @@ const SmallDisplays: React.FC<SmallDisplaysProps> = ({ chordsToDisplay }) => {
     }
   );
 
+  let currentChordPositions: any = null;
+
+  const chordDictionary2: any = chordDictionary.chords;
+  for (let chordKey in chordDictionary2) {
+    if (chordKey == undefined || chordKey == null) {
+      return null;
+    }
+    for (let i = 0; i < chordDictionary2[chordKey].length; i++) {
+      const current = chordDictionary2[chordKey][i];
+      if (
+        current.key === currentChord.name &&
+        current.suffix === currentChord.suffix
+      ) {
+        currentChordPositions = current.positions.map(
+          (position: any, index: number) => {
+            return (
+              <SmallFretboard
+                key={index}
+                position={position}
+                chordKey={current.key}
+                suffix={current.suffix}
+              />
+            );
+          }
+        );
+      }
+    }
+  }
+
   return (
     <Flex
       align="center"
@@ -31,7 +65,7 @@ const SmallDisplays: React.FC<SmallDisplaysProps> = ({ chordsToDisplay }) => {
       justify="center"
       wrap="wrap"
     >
-      {chordsToDisplay}
+      {currentChordPositions}
     </Flex>
   );
 };

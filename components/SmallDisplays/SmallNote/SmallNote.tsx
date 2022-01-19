@@ -40,9 +40,14 @@ const SmallNote: React.FC<SmallNoteProps> = ({
       <div
         className={styles.activeIndicator}
         style={{ visibility: active ? "visible" : "hidden" }}
-      >
-        o
-      </div>
+      ></div>
+      <div
+        className={styles.fretDecorator}
+        style={{
+          display: isDecorated ? "initial" : "none",
+          visibility: stringIndex === 2 ? "visible" : "hidden",
+        }}
+      ></div>
     </Flex>
   );
 };
