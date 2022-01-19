@@ -15,7 +15,7 @@
 
 .smallFretboardContainer:hover {
   border: 2px solid var(--secondaryColor);
-  transform: scale(1.02);
+  box-shadow: 2px 2px 16px 1px rgb(0, 0, 0, 0.9);
 }
 
 @media only screen and (max-width: 440px) {

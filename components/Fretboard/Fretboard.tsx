@@ -50,6 +50,7 @@ const Fretboard: React.FC<FretboardProps> = ({
           className="resetBtn"
           height="32px"
           minW="90px"
+          display="flex"
           onClick={() => clearFretboardNotes(fretboardState)}
         >
           Reset&nbsp;
