@@ -129,3 +129,51 @@ export const determineChord = (chordDictionary: any, userInput: number[]) => {
     }
   }
 };
+
+export const calculateRelatedChords = (
+  chordDictionary: any,
+  currentChord: any
+) => {
+  chordDictionary = chordDictionary.chords;
+
+  let suffixToSearchFor = currentChord.suffix;
+  switch (suffixToSearchFor) {
+    case "major":
+      suffixToSearchFor = "maj";
+      break;
+    case "minor":
+      suffixToSearchFor = "min";
+      break;
+  }
+
+  for (let key in chordDictionary) {
+    if (key === currentChord.name) {
+      const result = [];
+      for (let i = 0; i < 4; i++) {
+        const currentChordIteration = chordDictionary[key][i];
+        const suffix = currentChordIteration.suffix;
+        // if (
+        //   suffix !== currentChord.suffix &&
+        //   suffix.includes(suffixToSearchFor)
+        // ) {
+        //   return currentChordIteration;
+
+        // }
+        // if (suffix !== currentChord.suffix) {
+        //   if (suffix.includes(suffixToSearchFor)) {
+        //     return currentChordIteration;
+        //   } else {
+        //     if (suffix.includes(suffixToSearchFor[0])) {
+        //       return currentChordIteration;
+        //     }
+        //   }
+        // }
+        if (suffix !== currentChord.suffix) {
+          result.push(currentChordIteration);
+        }
+      }
+      return result;
+    }
+  }
+  return null;
+};

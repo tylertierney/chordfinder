@@ -26,7 +26,7 @@ const themeObj = {
         400: "#B2ECB2",
       },
       white: "#F5F5F5",
-      gray: "#333240",
+      gray: "#27272c",
       darkgray: "#232329",
       text: {
         dark: "#696969",

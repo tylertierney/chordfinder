@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import { StringType } from "../String/String";
 import {
   reduceNotesFromFretboard,
@@ -25,14 +25,25 @@ const Result: React.FC<ResultProps> = ({ currentChord }) => {
   }
 
   return (
-    <Heading className={styles.resultHeading} fontSize="3rem" userSelect="none">
-      <Text color="inherit" as="span">
-        {chordName}
-      </Text>
-      <Text color="inherit" as="span" fontSize="65%" verticalAlign="text-top">
-        {suffix}
-      </Text>
-    </Heading>
+    <Flex
+      align="center"
+      justify="center"
+      className={styles.resultContainer}
+      display={!chordName ? "none" : "flex"}
+    >
+      <Heading
+        className={styles.resultHeading}
+        fontSize="3rem"
+        userSelect="none"
+      >
+        <Text color="inherit" as="span">
+          {chordName}
+        </Text>
+        <Text color="inherit" as="span" fontSize="65%" verticalAlign="text-top">
+          {suffix}
+        </Text>
+      </Heading>
+    </Flex>
   );
 };
 
