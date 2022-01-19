@@ -110,7 +110,13 @@ export const determineChord = (chordDictionary: any, userInput: number[]) => {
       for (let j = 0; j < chord.positions.length; j++) {
         const position = chord.positions[j];
         const increasedFretValues = position.frets.map((fretNum: number) => {
-          return fretNum === -1 ? -1 : fretNum + position.baseFret - 1;
+          if (fretNum === 0) {
+            return 0;
+          } else if (fretNum === -1) {
+            return -1;
+          } else {
+            return fretNum + position.baseFret - 1;
+          }
         });
 
         if (JSON.stringify(increasedFretValues) === reversedUserInput) {
