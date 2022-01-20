@@ -64,7 +64,7 @@ const RandomChords: React.FC<RandomChordsProps> = ({
         </Heading>
       </Flex>
       <div className={styles.headingContainer}>
-        <Heading>Random</Heading>
+        <Heading fontWeight="normal">Random</Heading>
         <div className={styles.divider}></div>
       </div>
       <Flex align="center" width="100%" justify="center" wrap="wrap" mb="20px">

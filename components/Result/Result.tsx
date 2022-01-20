@@ -95,14 +95,14 @@ const Result: React.FC<ResultProps> = ({
       </Flex>
 
       <div className={styles.headingContainer}>
-        <Heading>{heading}</Heading>
+        <Heading fontWeight="normal">{heading}</Heading>
         <div className={styles.divider}></div>
       </div>
       <Flex align="center" width="100%" justify="center" wrap="wrap" mb="20px">
         {currentChordPositions}
       </Flex>
       <div className={styles.headingContainer}>
-        <Heading>Related</Heading>
+        <Heading fontWeight="normal">Related</Heading>
         <div className={styles.divider}></div>
       </div>
       <RelatedChords
